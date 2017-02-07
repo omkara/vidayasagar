@@ -4,18 +4,22 @@ const async 	= require('async')
 const mongoose  = require('mongoose')
 const config 	= require('../config/environment')
 
-async.auto({
-	conn: createConnection,
-	collections: ['conn', (res, done) => { getCollections(res.conn, done) }],
-	delete: ['collections', (res, done) => { deleteCollections(res.conn, res.collections, done) }],
-	close: ['delete', (res, done) => { closeConnection(res.conn, done) }]
-	}, (err, result) => {
-		if(err)
-			console.log('Some Error occured: ', err)
-		else
-			console.log( 'Database reset....done!!')
-	}
-)
+module.exports = (callback) => {
+	async.auto({
+		conn: createConnection,
+		collections: ['conn', (res, done) => { getCollections(res.conn, done) }],
+		delete: ['collections', (res, done) => { deleteCollections(res.conn, res.collections, done) }],
+		close: ['delete', (res, done) => { closeConnection(res.conn, done) }]
+		}, (err, result) => {
+			if(err)
+				console.log('Some Error occured: ', err)
+			else
+				console.log( 'Database reset....done!!')
+			callback(err, err ? null : result)
+		}
+	)
+}
+
 
 function createConnection(callback) {
 	var conn = null

@@ -4,6 +4,7 @@
 
 const express = require('express')
 const config = require('./config/environment')
+const seedUser = require('./config/seeduser')
 
 /* setup server */
 const app = express()
@@ -15,8 +16,11 @@ require('./routes')(app)   // Todo - Routes implementations are still pending
 
 // Populate DB with Sample data
 if(config.seedDB) {
-	require('./config/seeduser')
-}
+	seedUser((err, res) => {
+		server.listen(config.port, () => { console.log('Express server listening on port: %d', config.port)})
+	})
+} else
+	server.listen(config.port, () => { console.log('Express server listening on port: %d', config.port)})
 
-server.listen(config.port, () => { console.log('Express server listening on port: %d', config.port)})
+
 

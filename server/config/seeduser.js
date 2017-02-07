@@ -4,6 +4,7 @@ const _ 	  = require('lodash')
 const async   = require('async')
 const Student = require('../api/student/student.model')
 const config  = require('./environment')
+const resetDB = require('../scripts/resetDatabase')
 
 const STUDENTS = 20
 
@@ -42,16 +43,17 @@ function createStudent(student, callback) {
 	})
 }
 
-function createStudents() {
+function createStudents(callback) {
+	console.log('seeding user....please wait !!')
 	var students = prepareStudentData()
-	async.each(students, createStudent, (err) => {
-		if(err) {
-			console.log('[Error]: Error in creating students', err)
-			process.exit(1)
-		}
-	})
+	async.each(students, createStudent, callback)
 }
 
-// exports.createStudents = createStudents
-console.log('seeding user....please wait !!')
-createStudents()
+module.exports = (callback) => { async.series([resetDB, createStudents], (err, res) =>{
+		if(err) 
+			console.log('Error in populating database!!')
+		else 
+			console.log('Seeding user....done!!!')
+		callback(err, err ? null : res)
+	})
+}

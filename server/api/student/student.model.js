@@ -17,11 +17,11 @@ var studentSchema = new Schema({
 	address: [String]
 })
 
-studentSchema.plugin(autoIncrement.plugin, {
+/*studentSchema.plugin(autoIncrement.plugin, {
 	model: 'Student',
 	field: 'rollNumber',
 	startAt: 1,
 	incrementBy: 1
-})
+})*/
 
 module.exports = databases.commonDb.model('Student', studentSchema)
