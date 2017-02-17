@@ -4,10 +4,13 @@
 
 module.exports = {
 	env: 'development',
-	port: 9000,
+	port: process.env.PORT || 9000,
 	seedDB: true,
 	currentYear: 2017,
 	startYear: 2017,
+	salt: {
+		userSaltWorkFactor: 5
+	},
 	secret: {
 		session: 'vidayasager-secret'
 	},
@@ -19,5 +22,10 @@ module.exports = {
 			}
 		}
 	},
+   // List of user roles - in the hierarchical order
+  	userRoles: [
+    	{id: 'user', name: 'User'},
+    	{id: 'admin', name: 'Admin'}
+  	]
 
 }
