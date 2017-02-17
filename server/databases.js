@@ -1,10 +1,10 @@
 /**
-*	For database connection and config
+*	For database connection and configuration
 */
 
 'use strict'
 
-const _ 		= require('lodash')
+const _ 	= require('lodash')
 const mongoose  = require('mongoose')
 const config 	= require('./config/environment')
 const autoIncrement = require('mongoose-auto-increment')
