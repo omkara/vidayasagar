@@ -12,6 +12,8 @@ const errorHandler = require('errorhandler')
 const passport = require('passport')
 const session = require('express-session')
 const mongoStore = require('connect-mongo')(session)
+const path 		= require('path')
+
 
 const config = require('./environment')
 
@@ -19,7 +21,7 @@ module.exports = function(app) {
 
 	// app.set('views', config.root + '/server/views')
 	app.set('html', require('ejs').renderFile)
-
+	app.use(express.static(path.join(path.normalize(__dirname + '/../..' ) + '/client')))
 	app.use(compression())
 	app.use(bodyParser())
 	app.use(cookieParser())

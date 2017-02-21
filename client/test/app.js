@@ -50,7 +50,7 @@ angular.module('vidyasagarApp')
 .factory('StudentService', ['$resource', function ($resource) {
     //$resource() function returns an object of resource class.
     return $resource(
-            'http://shashank.com:9000/api/students/:id', //url
+            'api/students/:id', //url
             {},//parameters
             {
                 update: {

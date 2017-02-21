@@ -13,7 +13,7 @@ angular.module('vidyasagarApp', ['ui.router', 'ngResource'])
             	views: {
 					// the main template will be placed here (relatively named)
             		'': { templateUrl: 'app/about/partial-about.html' },
-            		'columnOne@about': { template: 'Look I am a column!' }
+            		'columnOne@about': { template: 'Look I am a column!' },
             		// for column two, we'll define a separate controller 
             		'columnTwo@about': { 
                 		templateUrl: 'app/table-data.html',
