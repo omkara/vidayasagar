@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flat Login Form 3.0</title>
+    
+</head>
+
+<body>
+
+    <div class="module form-module" ng-controller="formController" ng-init="init()">
+        <div class="toggle">
+            <input type="button" class="login" id="login" ng-click="switchRegForm()" ng-disabled="dis" value="Register here" />
+        </div>
+        <div class="form" id="login-form">
+            <span>Login form</span>
+            <br/>
+            <br/>
+            <form> 
+                <input type="text" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <button class="button">Log in</button>
+                <br/>
+                <br/>
+                <button id="fb-button">Sign in with Facebook<img class="share-image" src="./../../public/img/facebook.png"></img></button>
+                <br/>
+                <br/>
+                <button id="g-button" class="">Sign in with Google <img class="share-image" src="./../../public/img/google.png"></img></button>
+            </form>
+        </div>
+        <div class="cta" ng-click="switchPassForm()">Forgot your password?</div>
+        <div class="form" id="register-form" ng-show="register">
+            <span>Register form</span>
+            <br/>
+            <br/>
+            <form>
+                <input type="text" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <button class="button">Register</button>
+            </form>
+        </div>
+        <div class="form" id="password-form" ng-hide="register">
+            <form>
+                <input type="email" placeholder="Email Address" />
+                <button class="button">Set Password</button>
+                <br/><br/>
+                <button class="button" id="cancel-forgot-password" ng-click="cancelPassForm()">cancel</button>
+            </form>
+        </div>
+    </div>
+    <script src="./../../public/scripts/custom-login.js"></script>
+
+</body>
+
+</html>

@@ -203,3 +203,7 @@ footer p {
         clear: both;
     }
 }
+
+#login-link{
+    margin-left: 675px;
+}
