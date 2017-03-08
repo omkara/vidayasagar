@@ -28,8 +28,7 @@ vidyaSagar.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('login', {
             url: '/login',
-            templateUrl: 'app/login/partial-login.html',
-            controller: 'formController'
+            templateUrl: 'app/login/partial-login.html'
         });
 
 

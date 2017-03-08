@@ -4,46 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Flat Login Form 3.0</title>
-    
+
 </head>
 
 <body>
 
     <div class="module form-module" ng-controller="formController" ng-init="init()">
         <div class="toggle">
-            <input type="button" class="login" id="login" ng-click="switchRegForm()" ng-disabled="dis" value="Register here" />
+            <input type="button" class="login" id="login" ng-click="switchRegForm()" ng-disabled="dis" value="Create an account" />
         </div>
         <div class="form" id="login-form">
-            <span>Login form</span>
+            <span class="headding">Login form</span>
             <br/>
             <br/>
-            <form> 
-                <input type="text" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button class="button">Log in</button>
+            <form ng-controller="loginController">
+                <span class="error" ng-hide="emailErr">Email is not valid</span>
+                <input type="text" placeholder="Email" ng-model="loginForm.email" required/>
+                <span class="error" ng-hide="pswdErr">Password must contain a camelcase letter, a number, a symbol</span>
+                <span class="error" ng-hide="pswdErr">and it's length should not be less than 6</span>
+                <input type="password" placeholder="Password" ng-model="loginForm.password" required/>
+                <button class="button" ng-click="validate()" formnovalidate>Log me in</button>
                 <br/>
                 <br/>
-                <button id="fb-button">Sign in with Facebook<img class="share-image" src="./../../public/img/facebook.png"></img></button>
+                <span class="login-options">Other login options</span>
                 <br/>
                 <br/>
-                <button id="g-button" class="">Sign in with Google <img class="share-image" src="./../../public/img/google.png"></img></button>
+                <button class="facebook-share">Facebook<img src="./../../public/img/facebook.png"></img></button>
+                <br/>
+                <br/>
+                <button class="google-share">Google <img src="./../../public/img/google.png"></img></button>
             </form>
         </div>
         <div class="cta" ng-click="switchPassForm()">Forgot your password?</div>
         <div class="form" id="register-form" ng-show="register">
-            <span>Register form</span>
+            <span class="headding">Register form</span>
             <br/>
             <br/>
-            <form>
-                <input type="text" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button class="button">Register</button>
+            <form ng-controller="registerController">
+                <span class="error" ng-hide="emailErr">Email is not valid</span>
+                <input type="text" placeholder="Email" ng-model="regForm.email" required/>
+                <span class="error" ng-hide="pswdErr">Password must contain a camelcase letter, a number, a symbol</span>
+                <span class="error" ng-hide="pswdErr">and it's length should not be less than 6</span>
+                <input type="password" placeholder="Password" ng-model="regForm.password" required pattern=".{6,}" required title="6 characters minimum" />
+                <button class="button" ng-click="validate()" formnovalidate>Register</button>
             </form>
         </div>
         <div class="form" id="password-form" ng-hide="register">
-            <form>
-                <input type="email" placeholder="Email Address" />
-                <button class="button">Set Password</button>
+            <span class="headding2">Reset Password form</span>
+            <br/>
+            <br/>
+            <form ng-controller="passwordController">
+                <span class="error" ng-hide="emailErr">Email is not valid</span>
+                <input type="text" placeholder="Email Address" ng-model="pswd.email" required/>
+                <button class="button" ng-click="validate()">Set Password</button>
                 <br/><br/>
                 <button class="button" id="cancel-forgot-password" ng-click="cancelPassForm()">cancel</button>
             </form>
